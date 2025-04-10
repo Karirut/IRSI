@@ -48,7 +48,7 @@ Escribe el siguiente comando en tu computadora.\
 **Nota 2:** Puede ser *python* o *python3* dependiendo de tu versión de python (puedes checar tu version ocupando el comando de version del apartado **Paso 1**).\
 `python3 tarea1.py`
 
-### Interfaz del código
+## Interfaz del código
 * Cargar archivo
 Presiona el botón de **Cargar Archivo** para subir tu archivo de audio *.wav* o *.mp3* (solo uno por vez) y espera a que este se procese y cargue la primera gráfica antes de continuar, de otra manera la ventana podría trabarse.\
 **Nota:** puedes ocupar el archivo de audio guardado junto con este código o utilizar uno nuevo, solo recuerda que este debe ser *.wav* o *.mp3*.
@@ -80,4 +80,5 @@ Para gardar tu audio filtrado presiona el menú desplegable y elige el formato d
 ![alt](images/last_part.png)
 
 ### Contacto
-Si tienes cualquier duda sobre el funcionamiento del código que no haya sido explicada en este documento no dudes en contactarte por este medio. ¡Gracias!
+Si tienes cualquier duda sobre el funcionamiento del código que no haya sido explicada en este documento no dudes en contactarte por este medio.\
+¡Gracias!
