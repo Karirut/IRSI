@@ -2,7 +2,7 @@
 ## Karina Ruiz Tron 
 
 ### Explicación general del código
-Este código despliega una interfaz gráfica (HMI) en python que, al cargarle un archivo de audio, se puede garficar la señal procesada, aplicarle diferentes tipos de filtros, aplicarle la Transformada de Fourier yfinalmente, guardar el audio filtrado. 
+Este código despliega una interfaz gráfica (HMI) en python que, al cargarle un archivo de audio, se puede graficar la señal procesada, aplicarle diferentes tipos de filtros, aplicarle la Transformada de Fourier y, finalmente, guardar el audio filtrado. 
 
 ![alt](images/interfaz_completa.png)
 
