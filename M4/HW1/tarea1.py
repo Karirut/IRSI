@@ -16,6 +16,14 @@ class ventanaTarea(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # Declarar variables
+        self.audio_file = None
+        self.audio_data = None
+        self.sr = None
+        self.cindex = None
+        self.transform_flag = None
+        self.tindex = None
+
         # Declarar elementos graficos (botones, sliders, menu desplegable, labels y graficos)
         self.setWindowTitle("Procesamiento de Señal")
         self.label = QLabel("Sube tu archivo de audio aquí:")
@@ -41,13 +49,21 @@ class ventanaTarea(QMainWindow):
         self.select_filter.addItems(['Filtro Pasa-Bajas', 'Filtro Pasa-Altas', 'Filtro Pasa-Banda'])
         self.select_filter.activated.connect(self.check_index)
 
-        self.label_cutoff = QLabel("Selecciona la Frecuencia de Corte:")
+        self.label_cutoff = QLabel("Selecciona la Frecuencia de Corte (si el filtro es Pasa-Banda, esta será la frecuencia de corte alta):")
         self.slider_cutoff = QSlider()
         self.slider_cutoff.setOrientation(Qt.Horizontal)
         self.slider_cutoff.setRange(20, 20000)
         self.slider_cutoff.setValue(1000)
-        self.slider_cutoff.valueChanged.connect(self.update_cuttof)
-        self.cuttofvalue_label = QLabel(f"{self.slider_cutoff.value()}")
+        self.slider_cutoff.valueChanged.connect(self.update_cutoff)
+        self.cutoffvalue_label = QLabel(f"{self.slider_cutoff.value()} Hz")
+
+        self.label_cutoff_low = QLabel("Selecciona la frecuencia baja del filtro Pasa-Banda")
+        self.slider_cutoff_low = QSlider()
+        self.slider_cutoff_low.setOrientation(Qt.Horizontal)
+        self.slider_cutoff_low.setRange(20, 20000)
+        self.slider_cutoff_low.setValue(500)
+        self.slider_cutoff_low.valueChanged.connect(self.update_cutoff_low)
+        self.cutoffLOWvalue_label = QLabel(f"{self.slider_cutoff_low.value()} Hz")
 
         self.label_order = QLabel("Selecciona el Orden del Filtro:")
         self.slider_order = QSlider()
@@ -101,11 +117,21 @@ class ventanaTarea(QMainWindow):
         self.filtOption_layout.addWidget(self.select_filter)
         self.filtOption_layout.addWidget(self.button_apply)
         self.filtOption_layout.addWidget(self.button_filteredtransform)
-        self.cuttoflayout = QHBoxLayout()
-        self.layout.addLayout(self.cuttoflayout)
-        self.cuttoflayout.addWidget(self.label_cutoff)
-        self.cuttoflayout.addWidget(self.cuttofvalue_label)
+        self.cutofflayout = QHBoxLayout()
+        self.layout.addLayout(self.cutofflayout)
+        self.cutofflayout.addWidget(self.label_cutoff)
+        self.cutofflayout.addWidget(self.cutoffvalue_label)
         self.layout.addWidget(self.slider_cutoff)
+        self.cutoffLOWlayout = QHBoxLayout()
+        self.layout.addLayout(self.cutoffLOWlayout)
+        self.cutoffLOWlayout.addWidget(self.label_cutoff_low)
+        self.cutoffLOWlayout.addWidget(self.cutoffLOWvalue_label)
+        self.layout.addWidget(self.slider_cutoff_low)
+        '''Ocultar elementos para que solo aparezcan con la seleccion del filtro PasaBanda'''
+        self.label_cutoff_low.hide()
+        self.cutoffLOWvalue_label.hide()
+        self.slider_cutoff_low.hide()
+
         self.orderlayout = QHBoxLayout()
         self.layout.addLayout(self.orderlayout)
         self.orderlayout.addWidget(self.label_order)
@@ -124,14 +150,6 @@ class ventanaTarea(QMainWindow):
         self.savelayout.addWidget(self.save_label)
         self.savelayout.addWidget(self.select_type)
         self.savelayout.addWidget(self.button_save)
-
-        # Declarar variables
-        self.audio_file = None
-        self.audio_data = None
-        self.sr = None
-        self.cindex = None
-        self.transform_flag = None
-        self.tindex = None
 
         # Declarar contenedor de la pagina
         container = QWidget()
@@ -160,12 +178,14 @@ class ventanaTarea(QMainWindow):
 
     def fourier_transform(self): # Funcion de transformada de fourier
         if self.transform_flag == 0:
+            self.original_transform.clear()
             # transformada de Fourier de la señal original
             print("Aplicando Transformada de Fourier a la señal original")
             yf = np.fft.fft(self.audio_data)
             xf = np.fft.fftfreq(len(self.audio_data), 1 / self.sr)
             self.original_transform.plot(xf, np.abs(yf), pen='b')
         elif self.transform_flag == 1:
+            self.filtered_transform.clear()
             # transformada de Fourier de la señal filtrada
             print("Aplicando Transformada de Fourier a la señal filtrada")
             if hasattr(self, 'y_filtered'):
@@ -177,15 +197,27 @@ class ventanaTarea(QMainWindow):
 
     def check_index(self): # Identificar indice de seleccion de filtro
         self.cindex = self.select_filter.currentIndex()
+        if self.cindex == 2:
+            self.label_cutoff_low.show()
+            self.cutoffLOWvalue_label.show()
+            self.slider_cutoff_low.show()
+        else:
+            self.label_cutoff_low.hide()
+            self.cutoffLOWvalue_label.hide()
+            self.slider_cutoff_low.hide()
 
-    def update_cuttof(self): # Imprimir valor del filtro
-        self.cuttofvalue_label.setText(f"{self.slider_cutoff.value()}")
+    def update_cutoff(self): # Imprimir valor del filtro
+        self.cutoffvalue_label.setText(f"{self.slider_cutoff.value()}")
+
+    def update_cutoff_low(self):
+        self.cutoffLOWvalue_label.setText(f"{self.slider_cutoff_low.value()}")
 
     def update_order(self): # Imprimir valor de ordenada
         self.ordervalue_label.setText(f"{self.slider_order.value()}")
 
     def apply_filters(self): # Identificacion de filtro a usar dependiendo de la seleccion
         cutoff = self.slider_cutoff.value()
+        lowcutoff = self.slider_cutoff_low.value()
         order = self.slider_order.value()
         if self.cindex == 0:
             self.pasaBajas_filter(cutoff, order)
@@ -194,10 +226,11 @@ class ventanaTarea(QMainWindow):
             self.pasaAltas_filter(cutoff, order)
             print(f"Seleccion {self.cindex} -> Filtro Pasa-Altas seleccionado ")
         elif self.cindex == 2:
-            self.pasaBandas_filter(cutoff, order)
+            self.pasaBandas_filter(cutoff, lowcutoff, order)
             print(f"Seleccion {self.cindex} -> Filtro Pasa-Banda seleccionado ")
         else:
             print(f"Seleccion invalida -> Index: {self.cindex}")
+
 
     def pasaBajas_filter(self, cutoff, order): # Funcion filtro pasa-bajas
         if self.audio_data is not None and self.sr is not None:
@@ -219,11 +252,11 @@ class ventanaTarea(QMainWindow):
             time = np.linspace(0, len(self.audio_data) / self.sr, num=len(self.audio_data))
             self.filtered_signal.plot(time, self.y_filtered, pen='g', name='Filtrada Pasa-Altas')
 
-    def pasaBandas_filter(self, cutoff, order): # Funcion filtro pasa-bandas
+    def pasaBandas_filter(self, cutoff, lowcutoff, order): # Funcion filtro pasa-bandas
         if self.audio_data is not None and self.sr is not None:
             self.filtered_signal.clear()
             nyquist = 0.5 * self.sr
-            low_cutoff = 500 / nyquist
+            low_cutoff = lowcutoff / nyquist
             high_cutoff = cutoff / nyquist
             b, a = butter(order, [low_cutoff, high_cutoff], btype='band', analog=False)
             self.y_filtered = filtfilt(b, a, self.audio_data)
@@ -236,7 +269,7 @@ class ventanaTarea(QMainWindow):
     def save_archive(self): # Exportar archivos wav y mp3
         print("Salvando archivo...")
         if self.tindex == 0:
-            print("creando .wav...")
+            print("Creando .wav...")
             if hasattr(self, 'y_filtered'):
                 filename = "filtered.wav"
                 if self.cindex == 0:
@@ -252,7 +285,7 @@ class ventanaTarea(QMainWindow):
             else:
                 print("No hay señal filtrada para exportar.")
         elif self.tindex == 1:
-            print("creando .mp3...")
+            print("Creando .mp3...")
             if hasattr(self, 'y_filtered'):
                 temp_archive = "temp.wav"
                 sf.write(temp_archive, self.y_filtered, self.sr)
