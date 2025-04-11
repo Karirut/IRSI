@@ -127,7 +127,8 @@ class ventanaTarea(QMainWindow):
         self.cutoffLOWlayout.addWidget(self.label_cutoff_low)
         self.cutoffLOWlayout.addWidget(self.cutoffLOWvalue_label)
         self.layout.addWidget(self.slider_cutoff_low)
-        '''Ocultar elementos para que solo aparezcan con la seleccion del filtro PasaBanda'''
+
+        # Ocultar elementos para que solo aparezcan con la seleccion del filtro PasaBanda
         self.label_cutoff_low.hide()
         self.cutoffLOWvalue_label.hide()
         self.slider_cutoff_low.hide()
@@ -179,14 +180,14 @@ class ventanaTarea(QMainWindow):
     def fourier_transform(self): # Funcion de transformada de fourier
         if self.transform_flag == 0:
             self.original_transform.clear()
-            # transformada de Fourier de la señal original
+            # Transformada de Fourier de la señal original
             print("Aplicando Transformada de Fourier a la señal original")
             yf = np.fft.fft(self.audio_data)
             xf = np.fft.fftfreq(len(self.audio_data), 1 / self.sr)
             self.original_transform.plot(xf, np.abs(yf), pen='b')
         elif self.transform_flag == 1:
             self.filtered_transform.clear()
-            # transformada de Fourier de la señal filtrada
+            # Transformada de Fourier de la señal filtrada
             print("Aplicando Transformada de Fourier a la señal filtrada")
             if hasattr(self, 'y_filtered'):
                 yf = np.fft.fft(self.y_filtered)
@@ -207,10 +208,10 @@ class ventanaTarea(QMainWindow):
             self.slider_cutoff_low.hide()
 
     def update_cutoff(self): # Imprimir valor del filtro
-        self.cutoffvalue_label.setText(f"{self.slider_cutoff.value()}")
+        self.cutoffvalue_label.setText(f"{self.slider_cutoff.value()} Hz")
 
     def update_cutoff_low(self):
-        self.cutoffLOWvalue_label.setText(f"{self.slider_cutoff_low.value()}")
+        self.cutoffLOWvalue_label.setText(f"{self.slider_cutoff_low.value()} Hz")
 
     def update_order(self): # Imprimir valor de ordenada
         self.ordervalue_label.setText(f"{self.slider_order.value()}")
