@@ -71,7 +71,6 @@ Presiona en el menú desplegable de los diferentes tipos de filtro y selecciona 
 Si el filtro que seleccionaste es Pasa-Banda, se despliergará un nuevo parámetro que será la *frecuencia baja de corte* con un valor inicial de 500.\
 Presiona el botón de **Aplicar Filtro** cuando estés seguro de los valores a utilizar.
 
-
 * Aplica la **Transformada de Fourier** a la señal filtrada
 Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se aplique a tu señal filtrada (recuerda que esto puede ayudarte a ver los cambios en tus señales).
 
