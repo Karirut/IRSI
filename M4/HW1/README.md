@@ -53,7 +53,7 @@ Escribe el siguiente comando en tu computadora.\
 ## Interfaz del código
 * Cargar archivo
 Presiona el botón de **Cargar Archivo** para subir tu archivo de audio *.wav* o *.mp3* (solo uno por vez) y espera a que este se procese y cargue la primera gráfica antes de continuar, de otra manera la ventana podría trabarse.\
-**Nota:** puedes ocupar el archivo de audio guardado junto con este código o utilizar uno nuevo, solo recuerda que este debe ser *.wav* o *.mp3*.
+**Nota:** recuerda que el archivo de audio que utilices debe ser *.wav* o *.mp3*.
 
 ![alt](images/upload_audio.png)
 
@@ -70,6 +70,7 @@ Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se
 Presiona en el menú desplegable de los diferentes tipos de filtro y selecciona aquel que quieras aplicar, luego mueve los parámetros de *frecuencia de corte* y *orden de filtro* (estos tienen de valores inicales 1000 y 5 respectivamente) de acuerdo a lo que busques obtener.\
 Si el filtro que seleccionaste es Pasa-Banda, se despliergará un nuevo parámetro que será la *frecuencia baja de corte* con un valor inicial de 500.\
 Presiona el botón de **Aplicar Filtro** cuando estés seguro de los valores a utilizar.
+
 
 * Aplica la **Transformada de Fourier** a la señal filtrada
 Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se aplique a tu señal filtrada (recuerda que esto puede ayudarte a ver los cambios en tus señales).
@@ -92,3 +93,4 @@ Si tienes cualquier duda sobre el funcionamiento del código que no haya sido ex
 ¡Gracias!
 
 A01656073@tec.mx
+
