@@ -1,5 +1,7 @@
 # Tarea 1. HMI for signal processing
 ## Karina Ruiz Tron 
+## A01656073
+## Profesor: Jesús Manuel Vázquez Nicolás
 
 ### Explicación general del código
 Este código despliega una interfaz gráfica (HMI) en python que, al cargarle un archivo de audio, se puede graficar la señal procesada, aplicarle diferentes tipos de filtros, aplicarle la Transformada de Fourier y, finalmente, guardar el audio filtrado. 
@@ -37,12 +39,12 @@ Escribe los siguientes comandos en la terminal de tu computadora:\
 
 ### Paso 2 -> Correr el código
 Existen dos formas de correr el código:
-* Utilizando Visual Studio Code
+1. Utilizando Visual Studio Code
 Presiona en el botón de *Run* ubicado en la parte superior derecha (ve la foto de referencia).
 
 ![alt](images/run_vsc.png)
 
-* Utilizando la terminal
+2. Utilizando la terminal
 Escribe el siguiente comando en tu computadora.\
 **Nota:** Toma en cuenta que necesitas estar en la carpeta de tu codigo para poder ocuparla.\
 **Nota 2:** Puede ser *python* o *python3* dependiendo de tu versión de python (puedes checar tu version ocupando el comando de version del apartado **Paso 1**).\
@@ -65,7 +67,10 @@ Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se
 ![alt](images/first_part.png)
 
 * Selecciona el filtro a utilizar y aplícalo
-Presiona en el menú desplegable de los diferentes tipos de filtro y selecciona aquel que quieras aplicar, luego mueve los parámetros de *frecuencia de corte* y *orden de filtro* (estos tienen de valores inicales 1000 y 5 respectivamente) de acuerdo a lo que busques obtener y presiona el botón de **Aplicar Filtro**.
+Presiona en el menú desplegable de los diferentes tipos de filtro y selecciona aquel que quieras aplicar, luego mueve los parámetros de *frecuencia de corte* y *orden de filtro* (estos tienen de valores inicales 1000 y 5 respectivamente) de acuerdo a lo que busques obtener.\
+Si el filtro que seleccionaste es Pasa-Banda, se despliergará un nuevo parámetro que será la *frecuencia baja de corte* con un valor inicial de 500.\
+Presiona el botón de **Aplicar Filtro** cuando estés seguro de los valores a utilizar.
+
 
 * Aplica la **Transformada de Fourier** a la señal filtrada
 Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se aplique a tu señal filtrada (recuerda que esto puede ayudarte a ver los cambios en tus señales).
@@ -73,6 +78,10 @@ Presiona el botón de **Aplicar Transformada de Fourier** si quieres que esta se
 #### Así es como se muestra esta primera parte de la interfaz
 
 ![alt](images/second_part.png)
+
+#### Así es como se muestra esta primera parte de la interfaz con la selección de Filtro Pasa-Banda
+
+![alt](images/second_part_banda.png)
 
 * Selecciona el tipo de formato de salida y **guárdalo**
 Para gardar tu audio filtrado presiona el menú desplegable y elige el formato de salida de tu señal (*.wav* o *.mp3*) y presiona el botón de **Guardar Resultado**. Podrás ver este archivo guardado en la misma carpeta que tu código con el nombre del filtro que hayas ocupado.
@@ -82,3 +91,5 @@ Para gardar tu audio filtrado presiona el menú desplegable y elige el formato d
 ### Contacto
 Si tienes cualquier duda sobre el funcionamiento del código que no haya sido explicada en este documento no dudes en contactarte por este medio.\
 ¡Gracias!
+
+A01656073@tec.mx
