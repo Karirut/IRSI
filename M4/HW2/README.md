@@ -1,6 +1,6 @@
 # Tarea 2. Kalman Filter Application
-Karina Ruiz Tron/ 
-A01656073/
+Karina Ruiz Tron | 
+A01656073 |
 Profesor: Jesús Manuel Vázquez Nicolás
 
 ## Explicación general del código
@@ -22,7 +22,7 @@ Entre todas las librerías que se deben de importar, hay algunas que deben de in
 Puedes instalar las dependencias utilizando pip:
 
 `pip install opencv`\
-`pip install numpy`\
+`pip install numpy`
 
 **Nota:** si no estás seguro de tener alguna de estas librerías intenta poner el siguiente comando en tu computadora, cambiando a *librería* por la librería que quieras buscar:\
 `libreria --version`
@@ -57,7 +57,7 @@ Escribe el siguiente comando en tu computadora.\
 ### Visualización
 * Se muestran los frames procesados y los resultados en ventanas de OpenCV.
 
-**Nota:** Puedes detener el código presionando la tecla *q*, puedes cambiarla por cualquier otra tecla dentro del código.\
+**Nota:** Puedes detener el código presionando la tecla *q*, puedes cambiarla por cualquier otra tecla dentro del código.
 
 ### Contacto del Autor
 Si tienes cualquier duda sobre el funcionamiento del código que no haya sido explicada en este documento no dudes en contactarte por este medio.\
