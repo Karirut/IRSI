@@ -4,7 +4,7 @@ A01656073 |
 Profesor: Jesús Manuel Vázquez Nicolás
 
 ## Explicación general del código
-Este proyecto utiliza un filtro de Kalman para el seguimiento de objetos en un video. 
+Este proyecto utiliza un filtro de Kalman para el seguimiento de objetos en un video, específicamente, este video está orientado a seguir globos aerostáticos. 
 
 ### Requisitos
 - Python 3.x
@@ -58,6 +58,9 @@ Escribe el siguiente comando en tu computadora.\
 * Se muestran los frames procesados y los resultados en ventanas de OpenCV.
 
 **Nota:** Puedes detener el código presionando la tecla *q*, puedes cambiarla por cualquier otra tecla dentro del código.
+
+### Imágenes y videos
+Para probar el código puedes utilizar las imágenes y video de prueba dentro de la carpeta de `imag/` solo debes descomprimir el video llamado *globito_moving*.
 
 ### Contacto del Autor
 Si tienes cualquier duda sobre el funcionamiento del código que no haya sido explicada en este documento no dudes en contactarte por este medio.\
